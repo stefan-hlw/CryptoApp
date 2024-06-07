@@ -32,7 +32,7 @@ class CoinDetailViewModel @Inject constructor(
             when (result) {
 
                 is Resource.Loading -> {
-                    _state.value = CoinDetailState(error = result.message ?: "Unexpected error occurred")
+                    _state.value = CoinDetailState(isLoading = true)
                 }
 
                 is Resource.Success -> {
@@ -40,7 +40,7 @@ class CoinDetailViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    _state.value = CoinDetailState(isLoading = true)
+                    _state.value = CoinDetailState(error = result.message ?: "Unexpected error occurred")
                 }
 
             }

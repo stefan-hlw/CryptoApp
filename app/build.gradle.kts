@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.jetbrainsKotlinKapt)
+    alias(libs.plugins.google.dagger.hilt)
 }
 
 android {
@@ -72,7 +73,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.com.google.dagger.hilt.android)
     kapt(libs.com.google.dagger.hilt.android.compiler)
-    implementation(libs.androidx.hilt.hilt.lifecycle.viewmodel)
     kapt(libs.androidx.hilt.hilt.compiler)
     implementation(libs.androidx.hilt.hilt.navigation.compose)
     implementation(libs.com.square.retrofit2.retrofit)

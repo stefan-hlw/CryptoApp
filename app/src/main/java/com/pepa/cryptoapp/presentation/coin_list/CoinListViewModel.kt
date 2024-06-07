@@ -27,7 +27,7 @@ class CoinListViewModel @Inject constructor(
             when (result) {
 
                 is Resource.Loading -> {
-                    _state.value = CoinListState(error = result.message ?: "Unexpected error occurred")
+                    _state.value = CoinListState(isLoading = true)
                 }
 
                 is Resource.Success -> {
@@ -35,7 +35,7 @@ class CoinListViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    _state.value = CoinListState(isLoading = true)
+                    _state.value = CoinListState(error = result.message ?: "Unexpected error occurred")
                 }
 
             }
