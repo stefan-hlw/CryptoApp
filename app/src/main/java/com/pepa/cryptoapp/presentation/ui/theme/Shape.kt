@@ -1,4 +1,4 @@
-package com.pepa.cryptoapp.ui.theme
+package com.pepa.cryptoapp.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

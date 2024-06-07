@@ -1,4 +1,4 @@
-package com.pepa.cryptoapp.ui.theme
+package com.pepa.cryptoapp.presentation.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
