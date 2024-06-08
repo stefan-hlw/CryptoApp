@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.flowlayout.FlowRow
+import com.pepa.cryptoapp.domain.model.CoinDetail
 import com.pepa.cryptoapp.presentation.coin_detail.components.CoinTag
 import com.pepa.cryptoapp.presentation.coin_detail.components.TeamListItem
 
@@ -40,47 +41,25 @@ fun CoinDetailScreen(
                 contentPadding = PaddingValues(20.dp)
             ) {
                 item {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
-                            style = MaterialTheme.typography.h2,
-                            modifier = Modifier.weight(8f)
-                        )
-                        Text(
-                            text = if(coin.isActive) "active" else "inactive",
-                            color = if(coin.isActive) Color.Green else Color.Red,
-                            fontStyle = FontStyle.Italic,
-                            textAlign = TextAlign.End,
-                            modifier = Modifier
-                                .align(CenterVertically)
-                                .weight(2f)
-                        )
-                    }
+                    coinItem(coin)
                     Spacer(modifier = Modifier.height(15.dp))
+
                     Text(
                         text = coin.description,
                         style = MaterialTheme.typography.body2
                     )
                     Spacer(modifier = Modifier.height(15.dp))
+
                     Text(
                         text = "Tags",
                         style = MaterialTheme.typography.h3
                     )
                     Spacer(modifier = Modifier.height(15.dp))
-                    FlowRow(
-                        mainAxisSpacing = 6.dp,
-                        crossAxisSpacing = 6.dp,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        coin.tags.forEach { tag ->
-                            CoinTag(tag = tag)
-                        }
-                    }
+
+                    tagsItem(coin)
                     Spacer(modifier = Modifier.height(15.dp))
-                    if(coin.team.isNotEmpty()) {
+
+                    if (coin.team.isNotEmpty()) {
                         Text(
                             text = "Team members`",
                             style = MaterialTheme.typography.h3
@@ -116,6 +95,42 @@ fun CoinDetailScreen(
 
         if (state.isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        }
+    }
+}
+
+@Composable
+fun coinItem(coin: CoinDetail) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = "${coin.rank}. ${coin.name} (${coin.symbol})",
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier.weight(8f)
+        )
+        Text(
+            text = if (coin.isActive) "active" else "inactive",
+            color = if (coin.isActive) Color.Green else Color.Red,
+            fontStyle = FontStyle.Italic,
+            textAlign = TextAlign.End,
+            modifier = Modifier
+                .align(CenterVertically)
+                .weight(2f)
+        )
+    }
+}
+
+@Composable
+fun tagsItem(coin: CoinDetail) {
+    FlowRow(
+        mainAxisSpacing = 6.dp,
+        crossAxisSpacing = 6.dp,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        coin.tags.forEach { tag ->
+            CoinTag(tag = tag)
         }
     }
 }
